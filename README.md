@@ -25,16 +25,15 @@ That said, I'm including the alternative approximate calculations for comparison
     - Range, which is simplified to geometric mean
 - Get bounds on the answer
 
+
+
+## Possibly useful packages
+
+
+https://github.com/slightlynybbled/engineering_notation/tree/master
+
 https://pypi.org/project/magnitude/
 https://pypi.org/project/fuzzysets/
-
-Citations
-
-https://en.wikipedia.org/wiki/Fermi_problem
-
-https://www.lesswrong.com/posts/PsEppdvgRisz5xAHG/fermi-estimates
-
-https://en.wikipedia.org/wiki/Significant_figures
 
 ### Steps
 
@@ -52,10 +51,17 @@ https://en.wikipedia.org/wiki/Significant_figures
 6. Look at wost case range (interval arithmetic)
 7. look at best case range (products of log normals)
 
-sig digits
-http://www.astro.yale.edu/astro120/SigFig.pdf
-https://www.calculatorsoup.com/calculators/math/significant-figures.php - uh oh, computer numbers don't work like that
-https://chem.libretexts.org/Bookshelves/Analytical_Chemistry/Supplemental_Modules_(Analytical_Chemistry)/Quantifying_Nature/Significant_Digits
+## Related topics
+
+- https://en.wikipedia.org/wiki/Fermi_problem
+- https://www.lesswrong.com/posts/PsEppdvgRisz5xAHG/fermi-estimates
+- https://en.wikipedia.org/wiki/Significant_figures
+
+
+- http://www.astro.yale.edu/astro120/SigFig.pdf
+- https://www.calculatorsoup.com/calculators/math/significant-figures.php - uh oh, computer numbers don't work like that
+- https://chem.libretexts.org/Bookshelves/Analytical_Chemistry/Supplemental_Modules_(Analytical_Chemistry)
+  /Quantifying_Nature/Significant_Digits
 
 Is this useful? (fuzzy number multiplication)
 https://www.sciencedirect.com/science/article/pii/S0888613X18303153
@@ -67,3 +73,6 @@ Various:
 - https://nunosempere.com/blog/2022/08/20/fermi-introduction/ <- what are log normals?
 - https://aperiodical.com/2018/02/approaching-fermi-problems-with-the-approximate-geometric-mean/
 - https://www.cell.com/biophysj/pdfExtended/S0006-3495(14)01124-2
+
+TODO- decide if this make sense: 2552*18.0-4.0002 =45932 (5 sig figs, why not 3?)
+https://www.sigfigscalculator.com/

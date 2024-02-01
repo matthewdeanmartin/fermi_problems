@@ -1,0 +1,23 @@
+Problem: Estimate the number of piano tuners in a city.
+Factors
+    Population: 1e6 person [800k, 1.2M]
+    PianosPerPerson: 0.01 pianos/person
+    TuningsPerPianoPerYear: 2 tunings/piano/year
+    TuningsPerTunerPerDay: 4 tunings/tuner/day
+    WorkDaysPerYear: 250 days/year
+---
+UnitConversion: tuningsPerYear = TuningsPerPianoPerYear * WorkDaysPerYear
+---
+Uncertainty Type: range
+---
+Calculations
+  Rounding Rules: n significant digits
+  Interval Arithmetic: [worst, best]
+  LogNormal Distribution: best-case scenario
+---
+Results
+  Estimate: ? tuners
+  Confidence Interval: [?, ?] tuners
+  Significant Digits: ?
+  Worst Case: ? tuners
+  Best Case: ? tuners
