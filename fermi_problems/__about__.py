@@ -12,15 +12,17 @@ __all__ = [
     "__readme__",
     "__repository__",
     "__homepage__",
-    "__documentation__"
+    "__documentation__",
 ]
 
 __title__ = "fermi_problems"
 __version__ = "1.0.0"
-__description__ = "A library for fermi problems and a game to see how good you are at solving order of magnitude estimation problems."
+__description__ = (
+    "A library for fermi problems and a game to see how good you are at solving order of magnitude estimation problems."
+)
 __author__ = "Matthew Martin"
 __author_email__ = "matthewdeanmartin@gmail.com"
-__keywords__ = ['estimation', 'fermi problems']
+__keywords__ = ["estimation", "fermi problems"]
 __status__ = "3 - Alpha"
 __license__ = "MIT"
 __readme__ = "README.md"

@@ -1,8 +1,8 @@
-from decimal import Decimal, ROUND_HALF_UP
-from typing import List
+from decimal import Decimal
+
 
 class SigFig:
-    EXACT_DIGITS = float('inf')  # Represents an infinite number of significant digits
+    EXACT_DIGITS = float("inf")  # Represents an infinite number of significant digits
 
     def __init__(self, number: float, digits: int):
         self.number = number
@@ -16,22 +16,22 @@ class SigFig:
             return round(num, -int(num.log10()) + (sig_figs - 1))
         return Decimal(0)  # Can't take log(0)
 
-    def __add__(self, other: 'SigFig') -> 'SigFig':
+    def __add__(self, other: "SigFig") -> "SigFig":
         result = self.value + other.value
         min_digits = min(self.digits, other.digits)
         return SigFig(float(result), min_digits)
 
-    def __sub__(self, other: 'SigFig') -> 'SigFig':
+    def __sub__(self, other: "SigFig") -> "SigFig":
         result = self.value - other.value
         min_digits = min(self.digits, other.digits)
         return SigFig(float(result), min_digits)
 
-    def __mul__(self, other: 'SigFig') -> 'SigFig':
+    def __mul__(self, other: "SigFig") -> "SigFig":
         result = self.value * other.value
         min_digits = min(self.digits, other.digits)
         return SigFig(float(result), min_digits)
 
-    def __truediv__(self, other: 'SigFig') -> 'SigFig':
+    def __truediv__(self, other: "SigFig") -> "SigFig":
         result = self.value / other.value
         min_digits = min(self.digits, other.digits)
         return SigFig(float(result), min_digits)
@@ -45,8 +45,7 @@ class SigFig:
         return f"SigFig({self.value}, {self.digits})"
 
 
-
-def sum_sigfigs(numbers: List[SigFig]) -> SigFig:
+def sum_sigfigs(numbers: list[SigFig]) -> SigFig:
     if not numbers:
         return SigFig(0.0, 0)
 
@@ -59,7 +58,8 @@ def sum_sigfigs(numbers: List[SigFig]) -> SigFig:
     # Create a new SigFig instance with the total value and the minimum digits
     return SigFig(float(total_value), min_digits)
 
-def product_sigfigs(numbers: List[SigFig]) -> SigFig:
+
+def product_sigfigs(numbers: list[SigFig]) -> SigFig:
     if not numbers:
         return SigFig(1.0, 0)
 
@@ -73,6 +73,7 @@ def product_sigfigs(numbers: List[SigFig]) -> SigFig:
 
     # Create a new SigFig instance with the total value and the minimum digits
     return SigFig(float(total_value), min_digits)
+
 
 class DeferredExpression:
     def __init__(self):
@@ -92,11 +93,11 @@ class DeferredExpression:
             operation = self.stack.pop(0)
             right_operand = self.stack.pop(0)
 
-            if operation in ('*', '/'):
-                result = left_operand * right_operand if operation == '*' else left_operand / right_operand
-            elif operation in ('+', '-'):
+            if operation in ("*", "/"):
+                result = left_operand * right_operand if operation == "*" else left_operand / right_operand
+            elif operation in ("+", "-"):
                 # Defer rounding for addition/subtraction
-                result = left_operand + right_operand if operation == '+' else left_operand - right_operand
+                result = left_operand + right_operand if operation == "+" else left_operand - right_operand
                 # Keep track of the operands' significant digits for final rounding
 
             self.stack.insert(0, result)
@@ -109,19 +110,20 @@ class DeferredExpression:
 
         return final_result
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     # Usage
     expr = DeferredExpression()
     expr.add_operand(SigFig(1.234, 3))
-    expr.add_operation('*')
+    expr.add_operation("*")
     expr.add_operand(SigFig(2.345, 3))
-    expr.add_operation('+')
+    expr.add_operation("+")
     expr.add_operand(SigFig(3.456, 3))
     result = expr.evaluate()
     print(result)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # So if the measured values of 22.35 and 47.773 are added, the limiting value of 22.35
     # has two decimal places, which means that the result of the addition will have only two decimal places
     # https://www.britannica.com/science/significant-figures

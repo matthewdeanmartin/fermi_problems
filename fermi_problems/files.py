@@ -1,23 +1,28 @@
 from dataclasses import dataclass, field
-from typing import Dict, Union
+from typing import Union
+
 
 @dataclass
 class Factor:
     value: str
     range: str = None
 
+
 @dataclass
 class UnitConversion:
     equation: str
+
 
 @dataclass
 class Calculation:
     detail: str
 
+
 @dataclass
 class Result:
     detail: Union[str, None] = None
     extra: Union[str, None] = None
+
 
 @dataclass
 class FermiData:
@@ -28,56 +33,59 @@ class FermiData:
     Calculations: dict[str, Calculation] = field(default_factory=dict)
     Results: dict[str, Result] = field(default_factory=dict)
 
-def parse_fermi_problem(file_path:str):
+
+def parse_fermi_problem(file_path: str):
     fermi_data = FermiData()
 
     current_section = None
 
-    with open(file_path, 'r') as file:
+    with open(file_path) as file:
         for line in file:
             line = line.strip()
 
-            if line.startswith('Problem:') or line.startswith('Uncertainty Type:'):
-                fermi_data.Problem = line.split(':', 1)[1].strip()
+            if line.startswith("Problem:") or line.startswith("Uncertainty Type:"):
+                fermi_data.Problem = line.split(":", 1)[1].strip()
 
-            elif line.startswith('---'):
+            elif line.startswith("---"):
                 current_section = None
 
-            elif ':' in line and current_section is not None:
-                key, value = line.split(':', 1)
+            elif ":" in line and current_section is not None:
+                key, value = line.split(":", 1)
                 key = key.strip()
                 value = value.strip()
-                if current_section == 'Factors':
-                    if '[' in value and ']' in value:
-                        value, value_range = value.split('[', 1)
-                        value_range = value_range.strip(']')
+                if current_section == "Factors":
+                    if "[" in value and "]" in value:
+                        value, value_range = value.split("[", 1)
+                        value_range = value_range.strip("]")
                         value = value.strip()
                         fermi_data.Factors[key] = Factor(value, value_range)
                     else:
                         fermi_data.Factors[key] = Factor(value)
-                elif current_section == 'Results':
-                    if '[' in value and ']' in value:
-                        value, value_range = value.split('[', 1)
-                        value_range = value_range.strip(']')
+                elif current_section == "Results":
+                    if "[" in value and "]" in value:
+                        value, value_range = value.split("[", 1)
+                        value_range = value_range.strip("]")
                         value = value.strip()
                         fermi_data.Results[key] = Result(value, value_range)
                     else:
                         fermi_data.Results[key] = Result(value)
-                elif current_section == 'UnitConversion':
+                elif current_section == "UnitConversion":
                     fermi_data.UnitConversions[key] = UnitConversion(value)
-                elif current_section == 'Calculations':
+                elif current_section == "Calculations":
                     fermi_data.Calculations[key] = Calculation(value)
-                elif current_section == 'Results':
+                elif current_section == "Results":
                     fermi_data.Results[key] = Result(value)
                 else:
                     raise ValueError(f"Can't place line: {line} for {current_section}")
 
-            elif line in ['Factors', 'UnitConversion', 'Calculations', 'Results'] or line.startswith('UnitConversion:'):
-                 current_section = line
+            elif line in ["Factors", "UnitConversion", "Calculations", "Results"] or line.startswith("UnitConversion:"):
+                current_section = line
             else:
                 raise ValueError(f"Can't place line: {line}")
                 # print(f"Can't place line: {line}")
         return fermi_data
+
+
 # def parse_fermi_problem(file_path:str):
 #     fermi_data = {
 #         "Problem": "",
@@ -127,8 +135,8 @@ def parse_fermi_problem(file_path:str):
 #
 #     return fermi_data
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Usage
-    file_path = '../files/piano.txt'
+    file_path = "../files/piano.txt"
     parsed_data = parse_fermi_problem(file_path)
     print(parsed_data)
