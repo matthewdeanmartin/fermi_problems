@@ -1,6 +1,7 @@
 """
 But why? We got computers so we can do the actual geometric mean.
 """
+
 import math
 
 

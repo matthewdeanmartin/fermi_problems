@@ -1,8 +1,8 @@
 from fermi_problems.files import parse_fermi_problem
 
-from engineering_notation import EngNumber, EngUnit
+from engineering_notation import EngUnit
 
-file_path = '../files/piano.txt'
+file_path = "../files/piano.txt"
 parsed_data = parse_fermi_problem(file_path)
 print(parsed_data)
 

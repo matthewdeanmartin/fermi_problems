@@ -1,8 +1,7 @@
-from typing import List, Tuple
 from collections import Counter
 
 
-def simplify_units(ratios: List[str]) -> str:
+def simplify_units(ratios: list[str]) -> str:
     """
     Simplify a sequence of unit ratios to a single ratio.
 
@@ -15,7 +14,7 @@ def simplify_units(ratios: List[str]) -> str:
     # Parse the ratios into numerators and denominators
     numerators, denominators = [], []
     for ratio in ratios:
-        numerator, denominator = ratio.split('/')
+        numerator, denominator = ratio.split("/")
         numerators.append(numerator)
         denominators.append(denominator)
 
@@ -30,8 +29,8 @@ def simplify_units(ratios: List[str]) -> str:
         denominator_counter[unit] -= count
 
     # Construct the result
-    final_numerator = '*'.join(unit for unit, count in numerator_counter.items() for _ in range(count))
-    final_denominator = '*'.join(unit for unit, count in denominator_counter.items() for _ in range(count))
+    final_numerator = "*".join(unit for unit, count in numerator_counter.items() for _ in range(count))
+    final_denominator = "*".join(unit for unit, count in denominator_counter.items() for _ in range(count))
 
     return f"{final_numerator}/{final_denominator}" if final_denominator else final_numerator
 
