@@ -64,7 +64,7 @@ def product_sigfigs(numbers: list[SigFig]) -> SigFig:
         return SigFig(1.0, 0)
 
     # Multiply the values without rounding
-    total_value = 1
+    total_value = Decimal(1.0)
     for number in numbers:
         total_value *= number.value
 

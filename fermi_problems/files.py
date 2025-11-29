@@ -5,7 +5,7 @@ from typing import Union
 @dataclass
 class Factor:
     value: str
-    range: str = None
+    range: str | None = None
 
 
 @dataclass

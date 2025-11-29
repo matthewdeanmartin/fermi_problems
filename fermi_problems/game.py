@@ -32,7 +32,7 @@ def get_factors_and_units():
 
 # Helper function to get ordinal representation (1st, 2nd, 3rd, etc.)
 def ordinal(n):
-    return "%d%s" % (n, "tsnrhtdd"[(math.floor(n / 10) % 10 != 1) * (n % 10 < 4) * n % 10 :: 4])
+    return "%d%s" % (n, "tsnrhtdd"[(math.floor(n / 10) % 10 != 1) * (n % 10 < 4) * n % 10 :: 4])  # noqa
 
 
 # Step 3: Calculation of Product
