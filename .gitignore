@@ -162,3 +162,5 @@ cython_debug/
 .build_history/
 
 .idea/
+/junit.xml
+/SOURCE.md

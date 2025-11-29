@@ -3,12 +3,12 @@ name = "fermi_problems"
 version = "1.0.0"
 description = "A library for fermi problems and a game to see how good you are at solving order of magnitude estimation problems."
 authors = [
-    {name = "Matthew Martin", email = "matthewdeanmartin@gmail.com"},
+    { name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" },
 ]
-license = {text = "MIT"}
+license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.14"
-keywords = ["estimation", "fermi problems" ]
+keywords = ["estimation", "fermi problems"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: MIT License",
@@ -32,9 +32,11 @@ ais = 'fermi_problems.__main__:run'
 
 [dependency-groups]
 dev = ["mypy>=1.8.0", "ruff", "black>=23.11.0",
-    "pre-commit>=3.5.0", "interrogate>=1.5.0",  "pdoc3>=0.10.0", "mdformat>=0.7.17",
+    "pre-commit>=3.5.0", "interrogate>=1.5.0", "pdoc3>=0.10.0", "mdformat>=0.7.17",
     "linkcheckmd>=1.4.0", "codespell>=2.2.6", "pyenchant>=3.2.2", "metametameta>=0.1.0",
-
+    "isort",
+    "bandit",
+    "pylint",
     # pytest
     "pytest-cov>=4.1.0; python_version >= '3.8'",
     "pydoctest>=0.1.22",
@@ -42,7 +44,7 @@ dev = ["mypy>=1.8.0", "ruff", "black>=23.11.0",
     "pytest-xdist>=3.5.0; python_version >= '3.8'",
     "pytest-randomly>=3.15.0; python_version >= '3.8'",
     "pytest-sugar>=0.9.7; python_version >= '3.8'",
-"detect-test-pollution",
+    "detect-test-pollution",
     "pytest-timeout>=2.4.0",
     "pytest-network",
     "pytest-unused-fixtures"
@@ -108,7 +110,7 @@ select = ["E", "F",
 ignore = [
     "E722",
     # only track structural problems with docstrings, not whitespace, nor missing
-    "D200", "D212", "D415","D411", "D205","D102", "D103", "D100","D107","D101","D104","D105",
+    "D200", "D212", "D415", "D411", "D205", "D102", "D103", "D100", "D107", "D101", "D104", "D105",
     "UP007", "UP038", # Not sure if | is well supported in lowever versions of python
 ]
 
@@ -157,12 +159,12 @@ main_branches = "master, main, develop, dev"
 # python deps, don't really need to check, unless we make these optional and allow for pipx installation
 mypy = { version = ">=1.8.0" }
 pylint = { version = ">=3.0.2" }
-ruff = {  version = ">=0.1.9" }
-black = {  version = ">=23.11.0" }
-pygount = {  version = "*" }
+ruff = { version = ">=0.1.9" }
+black = { version = ">=23.11.0" }
+pygount = { version = "*" }
 
 [tool.bug_trail]
-app_name= "fermi_problems"
-app_author= "matthewdeanmartin"
+app_name = "fermi_problems"
+app_author = "matthewdeanmartin"
 source_folder = "fermi_problems"
 #ctags_file = "fish_tank.tags"
