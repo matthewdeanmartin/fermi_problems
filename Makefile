@@ -37,7 +37,6 @@ black: isort
 	$(VENV) metametameta pep621
 	$(VENV) black fermi_problems # --exclude .venv
 	$(VENV) black tests # --exclude .venv
-	$(VENV) git2md fermi_problems --ignore __init__.py __pycache__ --output SOURCE.md
 
 
 pre-commit:  isort black
