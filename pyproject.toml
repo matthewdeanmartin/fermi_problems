@@ -1,6 +1,6 @@
 [project]
 name = "fermi_problems"
-version = "1.0.0"
+version = "2.0.0"
 description = "A library for fermi problems and a game to see how good you are at solving order of magnitude estimation problems."
 authors = [
     { name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" },
@@ -16,10 +16,7 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.14",
 ]
-dependencies = [
-    "scipy>=1.12.0",
-    "engineering_notation>=0.1.0",
-]
+dependencies = []
 
 [project.urls]
 "Bug Tracker" = "https://github.com/matthewdeanmartin/fermi_problems/issues"
