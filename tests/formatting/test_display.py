@@ -1,6 +1,5 @@
 """Tests for fermi_problems.formatting.display"""
 
-import pytest
 from fermi_problems.core.chain import EstimateChain
 from fermi_problems.core.estimate import Estimate
 from fermi_problems.formatting.display import format_chain_result, format_estimate

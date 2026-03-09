@@ -1,6 +1,5 @@
 """Integration tests: end-to-end Fermi estimation."""
 
-import pytest
 from fermi_problems import Estimate, EstimateChain, Quantity, Unit
 
 

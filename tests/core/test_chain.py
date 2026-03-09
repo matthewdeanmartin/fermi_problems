@@ -1,9 +1,7 @@
 """Tests for fermi_problems.core.chain.EstimateChain"""
 
 import pytest
-from fermi_problems.core.chain import EstimateChain, ChainResult
-from fermi_problems.core.estimate import Estimate
-from fermi_problems.units.dimension import Unit
+from fermi_problems.core.chain import EstimateChain
 
 
 def test_piano_tuners_example():

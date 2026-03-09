@@ -70,6 +70,7 @@ class EstimateChain:
         if not self._factors:
             # Empty chain: return a dimensionless 1
             from fermi_problems.units.dimension import Unit as _Unit
+
             dummy = Estimate(1.0, _Unit())
             return ChainResult(
                 estimate=dummy,
@@ -151,10 +152,7 @@ class EstimateChain:
         if result_unit == self._target_unit:
             return True, result_unit, None
 
-        msg = (
-            f"Expected unit '{self._target_unit_str}' ({self._target_unit}), "
-            f"got {result_unit}"
-        )
+        msg = f"Expected unit '{self._target_unit_str}' ({self._target_unit}), " f"got {result_unit}"
         return False, result_unit, msg
 
     def __repr__(self) -> str:
