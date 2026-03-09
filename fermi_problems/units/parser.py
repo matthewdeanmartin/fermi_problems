@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 
 from fermi_problems.units.dimension import Unit
-from fermi_problems.units.registry import UnitDef, UnitRegistry, UnknownUnitError, default_registry
+from fermi_problems.units.registry import UnitRegistry, default_registry
 
 
 @dataclass
@@ -66,9 +66,9 @@ def parse_unit(expr: str, registry: UnitRegistry | None = None) -> ParsedUnit:
                 combined_dims[dim_name] = combined_dims.get(dim_name, 0) + dim_exp * exp * sign
             # Scale: scale^exp, applied with sign direction
             if sign > 0:
-                combined_scale *= unit_def.scale ** exp
+                combined_scale *= unit_def.scale**exp
             else:
-                combined_scale /= unit_def.scale ** exp
+                combined_scale /= unit_def.scale**exp
 
     apply_term(numerator_str, 1)
     for den_str in denominator_strs:

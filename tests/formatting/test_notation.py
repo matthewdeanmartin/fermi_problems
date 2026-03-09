@@ -1,6 +1,5 @@
 """Tests for fermi_problems.formatting.notation"""
 
-import pytest
 from fermi_problems.formatting.notation import (
     to_scientific,
     to_engineering,
