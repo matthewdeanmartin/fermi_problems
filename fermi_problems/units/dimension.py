@@ -17,9 +17,7 @@ class Unit:
         None or empty dict = dimensionless.
         """
         if dimensions:
-            self._dims: tuple[tuple[str, int], ...] = tuple(
-                sorted((k, v) for k, v in dimensions.items() if v != 0)
-            )
+            self._dims: tuple[tuple[str, int], ...] = tuple(sorted((k, v) for k, v in dimensions.items() if v != 0))
         else:
             self._dims = ()
 

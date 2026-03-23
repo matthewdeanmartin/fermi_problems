@@ -66,7 +66,8 @@ class Unit:
         None or empty dict = dimensionless."""
 
     @property
-    def is_dimensionless(self) -> bool: ...
+    def is_dimensionless(self) -> bool:
+        ...
 
     def __mul__(self, other: "Unit") -> "Unit":
         """Combine dimensions: add exponents."""
@@ -80,9 +81,15 @@ class Unit:
     def inverse(self) -> "Unit":
         """Negate all exponents. Unit("length":1) -> Unit("length":-1)."""
 
-    def __eq__(self, other: object) -> bool: ...
-    def __hash__(self) -> int: ...
-    def __repr__(self) -> str: ...
+    def __eq__(self, other: object) -> bool:
+        ...
+
+    def __hash__(self) -> int:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
     def __str__(self) -> str:
         """Human-readable: 'length/time^2'."""
 ```
@@ -136,9 +143,11 @@ to the base unit for that dimension.
 @dataclass(frozen=True)
 class UnitDef:
     """Definition of a named unit."""
-    dimensions: dict[str, int]   # e.g. {"length": 1}
-    scale: float                 # relative to base unit (meters=1.0, feet=0.3048)
-    canonical_name: str          # e.g. "meters" (for display)
+
+    dimensions: dict[str, int]  # e.g. {"length": 1}
+    scale: float  # relative to base unit (meters=1.0, feet=0.3048)
+    canonical_name: str  # e.g. "meters" (for display)
+
 
 class UnitRegistry:
     """Mutable registry of known unit names."""
@@ -160,7 +169,9 @@ class UnitRegistry:
     def aliases(self, canonical_name: str) -> list[str]:
         """Return all registered names for a given canonical name."""
 
-class UnknownUnitError(Exception): ...
+
+class UnknownUnitError(Exception):
+    ...
 ```
 
 **Built-in units to register:**
@@ -236,8 +247,10 @@ plus an aggregate scale factor, using the registry.
 @dataclass
 class ParsedUnit:
     """Result of parsing a unit expression string."""
-    unit: Unit           # the dimension structure
-    scale: float         # aggregate scale factor relative to SI bases
+
+    unit: Unit  # the dimension structure
+    scale: float  # aggregate scale factor relative to SI bases
+
 
 def parse_unit(expr: str, registry: UnitRegistry | None = None) -> ParsedUnit:
     """Parse a unit expression string.
@@ -299,7 +312,12 @@ Export the public API:
 
 ```python
 from fermi_problems.units.dimension import Unit
-from fermi_problems.units.registry import UnitDef, UnitRegistry, UnknownUnitError, default_registry
+from fermi_problems.units.registry import (
+    UnitDef,
+    UnitRegistry,
+    UnknownUnitError,
+    default_registry,
+)
 from fermi_problems.units.parser import ParsedUnit, parse_unit
 ```
 
@@ -318,7 +336,9 @@ converts units automatically.
 class Quantity:
     """A numeric value with a unit."""
 
-    def __init__(self, value: float, unit: Unit | str, registry: UnitRegistry | None = None):
+    def __init__(
+        self, value: float, unit: Unit | str, registry: UnitRegistry | None = None
+    ):
         """Create a quantity.
         If unit is a string, parse it via the registry.
         The value is stored in SI-base scale internally."""
@@ -356,9 +376,12 @@ class Quantity:
     def __sub__(self, other: "Quantity") -> "Quantity":
         """Subtract quantities. Must have same dimensions."""
 
-    def __repr__(self) -> str: ...
+    def __repr__(self) -> str:
+        ...
+
     def __str__(self) -> str:
         """e.g. '3.0e+08 meters/second'"""
+
 
 class DimensionError(Exception):
     """Raised when units are incompatible for an operation."""
@@ -418,6 +441,7 @@ def normal_ppf(p: float) -> float:
     Accurate to ~4.5e-4 relative error, which is more than enough
     for Fermi estimation."""
 
+
 def lognormal_from_range(
     low: float,
     high: float,
@@ -436,8 +460,10 @@ def lognormal_from_range(
     where z = normal_ppf((1 + confidence) / 2)
     """
 
+
 def lognormal_point_estimate(log_mean: float) -> float:
     """exp(log_mean) — the geometric mean / median of the lognormal."""
+
 
 def lognormal_confidence_interval(
     log_mean: float,
@@ -445,6 +471,7 @@ def lognormal_confidence_interval(
     confidence: float = 0.90,
 ) -> tuple[float, float]:
     """Return (low, high) confidence interval for a lognormal distribution."""
+
 
 def combine_lognormals_product(
     params: list[tuple[float, float]],
@@ -461,6 +488,7 @@ def combine_lognormals_product(
     Returns:
         (combined_log_mean, combined_log_std)
     """
+
 
 def lognormal_from_point_estimate(
     value: float,
@@ -532,6 +560,7 @@ def interval_product(
     Handles negative values correctly (relevant if someone has a negative
     factor, though unusual in Fermi problems).
     """
+
 
 def interval_quotient(
     numerator: tuple[float, float],
@@ -649,16 +678,20 @@ class Estimate:
         """Point estimate (geometric mean if range was given)."""
 
     @property
-    def unit(self) -> Unit: ...
+    def unit(self) -> Unit:
+        ...
 
     @property
-    def log_mean(self) -> float: ...
+    def log_mean(self) -> float:
+        ...
 
     @property
-    def log_std(self) -> float: ...
+    def log_std(self) -> float:
+        ...
 
     @property
-    def sig_figs(self) -> int: ...
+    def sig_figs(self) -> int:
+        ...
 
     @property
     def low(self) -> float | None:
@@ -674,14 +707,18 @@ class Estimate:
     def __mul__(self, other: "Estimate | Quantity | float | int") -> "Estimate":
         """Multiply estimates: multiply values, combine units, propagate uncertainty."""
 
-    def __rmul__(self, other: float | int) -> "Estimate": ...
+    def __rmul__(self, other: float | int) -> "Estimate":
+        ...
 
     def __truediv__(self, other: "Estimate | Quantity | float | int") -> "Estimate":
         """Divide estimates: divide values, divide units, propagate uncertainty."""
 
-    def __rtruediv__(self, other: float | int) -> "Estimate": ...
+    def __rtruediv__(self, other: float | int) -> "Estimate":
+        ...
 
-    def __repr__(self) -> str: ...
+    def __repr__(self) -> str:
+        ...
+
     def __str__(self) -> str:
         """e.g. '~1.0e+06 people [8.0e+05, 1.2e+06]'"""
 ```
@@ -734,12 +771,14 @@ bounds.
 @dataclass
 class ChainResult:
     """Result of computing an EstimateChain."""
-    estimate: Estimate                          # combined point estimate + uncertainty
-    worst_case: tuple[float, float]             # interval arithmetic bounds
-    best_case: tuple[float, float]              # lognormal CI (90% default)
-    unit_check: bool                            # do units cancel to target?
-    unit_mismatch_detail: str | None            # explanation if they don't
-    sig_figs: int                               # significant figures in result
+
+    estimate: Estimate  # combined point estimate + uncertainty
+    worst_case: tuple[float, float]  # interval arithmetic bounds
+    best_case: tuple[float, float]  # lognormal CI (90% default)
+    unit_check: bool  # do units cancel to target?
+    unit_mismatch_detail: str | None  # explanation if they don't
+    sig_figs: int  # significant figures in result
+
 
 class EstimateChain:
     """A Fermi decomposition: a sequence of estimates that multiply to an answer."""
@@ -775,7 +814,8 @@ class EstimateChain:
         """Check if factor units cancel to the target.
         Returns (ok, resulting_unit, error_message_or_none)."""
 
-    def __repr__(self) -> str: ...
+    def __repr__(self) -> str:
+        ...
 ```
 
 **The compute() method does:**
@@ -827,8 +867,10 @@ def infer_sig_figs(value: float) -> int:
     users should specify sig_figs explicitly.
     """
 
+
 def round_to_sig_figs(value: float, sig_figs: int) -> float:
     """Round a number to the given number of significant figures."""
+
 
 def format_sig_figs(value: float, sig_figs: int) -> str:
     """Format a number showing exactly sig_figs significant figures.
@@ -880,9 +922,11 @@ Fermi estimation.
 def to_scientific(value: float, sig_figs: int = 3) -> str:
     """Format in scientific notation: '1.23e+06'."""
 
+
 def to_engineering(value: float, sig_figs: int = 3) -> str:
     """Format in engineering notation (exponent multiple of 3): '1.23M'.
     Uses suffixes: k, M, B (billion), T (trillion)."""
+
 
 def to_human(value: float, sig_figs: int = 2) -> str:
     """Format for human reading. Picks the best representation:
@@ -890,6 +934,7 @@ def to_human(value: float, sig_figs: int = 2) -> str:
     - Large numbers with suffix: '10M', '2.5B'
     - Very large/small in scientific notation: '3.0e+23'
     """
+
 
 def to_order_of_magnitude(value: float) -> str:
     """Format as '~10^N'. Example: 1.5e6 -> '~10^6'."""
@@ -936,6 +981,7 @@ def format_chain_result(result: ChainResult, show_factors: bool = True) -> str:
           ...
     """
 
+
 def format_estimate(estimate: Estimate, style: str = "human") -> str:
     """Format a single estimate.
     style: 'human', 'scientific', 'engineering'."""
@@ -965,11 +1011,14 @@ def format_estimate(estimate: Estimate, style: str = "human") -> str:
 def nearest_order_of_magnitude(number: float) -> int:
     """Round log10(number) to nearest integer."""
 
+
 def order_of_magnitude(number: float) -> int:
     """Order of magnitude using geometric midpoint rounding."""
 
+
 def order_of_magnitude_range(number: float) -> tuple[float, float]:
     """Range of numbers that share the same order of magnitude."""
+
 
 def log10_distance(a: float, b: float) -> float:
     """Absolute distance in log10 space. |log10(a) - log10(b)|.
@@ -1005,7 +1054,13 @@ from fermi_problems import Estimate, EstimateChain, Quantity, Unit
 
 ```python
 from fermi_problems.units import Unit, UnitRegistry, parse_unit, default_registry
-from fermi_problems.core import Quantity, Estimate, EstimateChain, ChainResult, DimensionError
+from fermi_problems.core import (
+    Quantity,
+    Estimate,
+    EstimateChain,
+    ChainResult,
+    DimensionError,
+)
 from fermi_problems.core.magnitude import (
     nearest_order_of_magnitude,
     order_of_magnitude,
@@ -1033,7 +1088,9 @@ def test_piano_tuners_chicago():
     chain.add_factor("population", 2.7e6, "people", low=2.5e6, high=3e6)
     chain.add_factor("pianos_per_person", 0.02, "pianos/person", low=0.01, high=0.05)
     chain.add_factor("tunings_per_year", 1.5, "tunings/piano/year", low=1, high=2)
-    chain.add_factor("tuner_capacity", 4, "tunings/tuner/day", low=3, high=5, divide=True)
+    chain.add_factor(
+        "tuner_capacity", 4, "tunings/tuner/day", low=3, high=5, divide=True
+    )
     chain.add_factor("work_days", 250, "days/year", low=240, high=260, divide=True)
 
     result = chain.compute()
@@ -1067,6 +1124,7 @@ def test_simple_multiplication():
 
     assert distance.unit == Unit({"length": 1})
     assert abs(distance.in_unit("miles") - 150) < 1
+
 
 def test_unit_conversion():
     """Converting between compatible units."""

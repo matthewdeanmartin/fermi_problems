@@ -51,7 +51,7 @@ def test_auto_register_counting_unit():
 
 
 def test_scale_factors_consistent():
-    """feet * scale should equal 0.3048 meters."""
+    """Feet * scale should equal 0.3048 meters."""
     reg = UnitRegistry()
     feet_ud = reg.lookup("feet")
     meters_ud = reg.lookup("meters")

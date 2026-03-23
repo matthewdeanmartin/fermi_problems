@@ -78,7 +78,7 @@ def format_sig_figs(value: float, sig_figs: int) -> str:
     else:
         # Scientific notation
         exp = magnitude
-        coeff = value / (10 ** exp)
+        coeff = value / (10**exp)
         decimal_places = sig_figs - 1
         coeff_rounded = round(coeff, decimal_places)
         if decimal_places == 0:

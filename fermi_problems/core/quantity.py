@@ -1,7 +1,7 @@
 """Quantity — a numeric value paired with a Unit."""
 
 from fermi_problems.units.dimension import Unit
-from fermi_problems.units.parser import ParsedUnit, parse_unit
+from fermi_problems.units.parser import parse_unit
 from fermi_problems.units.registry import UnitRegistry
 
 
@@ -65,9 +65,7 @@ class Quantity:
             target_scale = 1.0
 
         if self._unit != target_unit:
-            raise DimensionError(
-                f"Cannot convert {self._unit} to {target_unit}: dimensions do not match"
-            )
+            raise DimensionError(f"Cannot convert {self._unit} to {target_unit}: dimensions do not match")
         return self._si_value / target_scale
 
     def to(self, target: "str | Unit") -> "Quantity":
@@ -124,9 +122,7 @@ class Quantity:
     def __add__(self, other: "Quantity") -> "Quantity":
         """Add quantities. Must have same dimensions. Converts to common base."""
         if self._unit != other._unit:
-            raise DimensionError(
-                f"Cannot add {self._unit} and {other._unit}: dimensions do not match"
-            )
+            raise DimensionError(f"Cannot add {self._unit} and {other._unit}: dimensions do not match")
         result = Quantity.__new__(Quantity)
         result._si_value = self._si_value + other._si_value
         result._unit = self._unit
@@ -137,9 +133,7 @@ class Quantity:
     def __sub__(self, other: "Quantity") -> "Quantity":
         """Subtract quantities. Must have same dimensions."""
         if self._unit != other._unit:
-            raise DimensionError(
-                f"Cannot subtract {self._unit} and {other._unit}: dimensions do not match"
-            )
+            raise DimensionError(f"Cannot subtract {self._unit} and {other._unit}: dimensions do not match")
         result = Quantity.__new__(Quantity)
         result._si_value = self._si_value - other._si_value
         result._unit = self._unit

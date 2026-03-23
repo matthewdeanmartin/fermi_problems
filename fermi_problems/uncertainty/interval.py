@@ -38,8 +38,6 @@ def interval_quotient(
     """
     d_low, d_high = denominator
     if d_low <= 0 <= d_high:
-        raise ZeroDivisionError(
-            f"Denominator interval {denominator} contains zero"
-        )
+        raise ZeroDivisionError(f"Denominator interval {denominator} contains zero")
     # Dividing by [d_low, d_high] is same as multiplying by [1/d_high, 1/d_low]
     return interval_product([numerator, (1.0 / d_high, 1.0 / d_low)])
