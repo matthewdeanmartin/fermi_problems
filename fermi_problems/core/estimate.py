@@ -156,8 +156,7 @@ class Estimate:
             new_display_str = f"{self._display_unit_str}*{other._display_unit_str}"
 
         return self._make_estimate_from_params(
-            new_si_value, new_unit, new_log_mean, new_log_std, new_sig_figs,
-            new_display_str, new_display_scale
+            new_si_value, new_unit, new_log_mean, new_log_std, new_sig_figs, new_display_str, new_display_scale
         )
 
     def __rmul__(self, other: "float | int") -> "Estimate":
@@ -180,12 +179,13 @@ class Estimate:
             new_si_value = math.exp(new_log_mean)
             new_unit = self._unit / other._unit
             new_sig_figs = min(self._sig_figs, other._sig_figs)
-            new_display_scale = self._display_scale / other._display_scale if other._display_scale != 0 else self._display_scale
+            new_display_scale = (
+                self._display_scale / other._display_scale if other._display_scale != 0 else self._display_scale
+            )
             new_display_str = f"{self._display_unit_str}/{other._display_unit_str}"
 
         return self._make_estimate_from_params(
-            new_si_value, new_unit, new_log_mean, new_log_std, new_sig_figs,
-            new_display_str, new_display_scale
+            new_si_value, new_unit, new_log_mean, new_log_std, new_sig_figs, new_display_str, new_display_scale
         )
 
     def __rtruediv__(self, other: "float | int") -> "Estimate":
@@ -195,13 +195,19 @@ class Estimate:
         new_si_value = math.exp(new_log_mean)
         new_unit = self._unit.inverse()
         return self._make_estimate_from_params(
-            new_si_value, new_unit, new_log_mean, new_log_std, self._sig_figs,
-            f"1/{self._display_unit_str}", 1.0 / self._display_scale if self._display_scale != 0 else 1.0
+            new_si_value,
+            new_unit,
+            new_log_mean,
+            new_log_std,
+            self._sig_figs,
+            f"1/{self._display_unit_str}",
+            1.0 / self._display_scale if self._display_scale != 0 else 1.0,
         )
 
     def in_unit(self, target: "str | Unit") -> float:
         """Return the numeric value expressed in the given target unit."""
         from fermi_problems.core.quantity import DimensionError
+
         if isinstance(target, str):
             parsed = parse_unit(target)
             target_unit = parsed.unit
@@ -210,9 +216,7 @@ class Estimate:
             target_unit = target
             target_scale = 1.0
         if self._unit != target_unit:
-            raise DimensionError(
-                f"Cannot convert {self._unit} to {target_unit}: dimensions do not match"
-            )
+            raise DimensionError(f"Cannot convert {self._unit} to {target_unit}: dimensions do not match")
         return self._si_value / target_scale
 
     def __repr__(self) -> str:

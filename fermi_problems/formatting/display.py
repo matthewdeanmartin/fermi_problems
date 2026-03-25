@@ -66,7 +66,9 @@ def format_chain_result(result: ChainResult, show_factors: bool = True) -> str:
         lines.append("Factors:")
         for name, factor_est, is_divisor in est._chain_factors:
             sign = "/" if is_divisor else "="
-            factor_display = factor_est.value / factor_est._display_scale if factor_est._display_scale != 0 else factor_est.value
+            factor_display = (
+                factor_est.value / factor_est._display_scale if factor_est._display_scale != 0 else factor_est.value
+            )
             low_si, high_si = factor_est.confidence_interval()
             low_disp = low_si / factor_est._display_scale if factor_est._display_scale != 0 else low_si
             high_disp = high_si / factor_est._display_scale if factor_est._display_scale != 0 else high_si

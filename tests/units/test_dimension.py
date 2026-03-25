@@ -1,6 +1,5 @@
 """Tests for fermi_problems.units.dimension.Unit"""
 
-import pytest
 from fermi_problems.units.dimension import Unit
 
 
@@ -42,9 +41,9 @@ def test_multiply_to_dimensionless():
 
 def test_power():
     u = Unit({"length": 1})
-    assert u ** 2 == Unit({"length": 2})
-    assert u ** 3 == Unit({"length": 3})
-    assert u ** -1 == Unit({"length": -1})
+    assert u**2 == Unit({"length": 2})
+    assert u**3 == Unit({"length": 3})
+    assert u**-1 == Unit({"length": -1})
 
 
 def test_inverse():
@@ -91,4 +90,4 @@ def test_unit_times_unit_dimensionless():
 
 def test_power_zero():
     u = Unit({"length": 2})
-    assert (u ** 0).is_dimensionless
+    assert (u**0).is_dimensionless
