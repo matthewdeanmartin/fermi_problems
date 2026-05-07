@@ -1,8 +1,9 @@
 """Tests for fermi_problems.core.quantity.Quantity"""
 
 import pytest
+
+from fermi_problems.core.quantity import DimensionError, Quantity
 from fermi_problems.units.dimension import Unit
-from fermi_problems.core.quantity import Quantity, DimensionError
 
 
 def test_create_with_string_unit():

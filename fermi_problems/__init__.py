@@ -1,14 +1,10 @@
 """fermi_problems — a library for Fermi estimation with units and uncertainty."""
 
-from fermi_problems.units import Unit, UnitRegistry, parse_unit, default_registry
-from fermi_problems.core import Quantity, Estimate, EstimateChain, ChainResult, DimensionError
-from fermi_problems.core.magnitude import (
-    nearest_order_of_magnitude,
-    order_of_magnitude,
-    log10_distance,
-)
-from fermi_problems.formatting.notation import to_scientific, to_engineering, to_human
+from fermi_problems.core import ChainResult, DimensionError, Estimate, EstimateChain, Quantity
+from fermi_problems.core.magnitude import log10_distance, nearest_order_of_magnitude, order_of_magnitude
 from fermi_problems.formatting.display import format_chain_result, format_estimate
+from fermi_problems.formatting.notation import to_engineering, to_human, to_scientific
+from fermi_problems.units import Unit, UnitRegistry, default_registry, parse_unit
 
 __all__ = [
     "Unit",

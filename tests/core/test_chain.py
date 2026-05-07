@@ -1,6 +1,7 @@
 """Tests for fermi_problems.core.chain.EstimateChain"""
 
 import pytest
+
 from fermi_problems.core.chain import EstimateChain
 
 

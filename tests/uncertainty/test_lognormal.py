@@ -1,14 +1,16 @@
 """Tests for fermi_problems.uncertainty.lognormal"""
 
 import math
+
 import pytest
+
 from fermi_problems.uncertainty.lognormal import (
-    normal_ppf,
+    combine_lognormals_product,
+    lognormal_confidence_interval,
+    lognormal_from_point_estimate,
     lognormal_from_range,
     lognormal_point_estimate,
-    lognormal_confidence_interval,
-    combine_lognormals_product,
-    lognormal_from_point_estimate,
+    normal_ppf,
 )
 
 

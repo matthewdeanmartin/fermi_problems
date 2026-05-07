@@ -1,6 +1,7 @@
 """Tests for fermi_problems.uncertainty.interval"""
 
 import pytest
+
 from fermi_problems.uncertainty.interval import interval_product, interval_quotient
 
 

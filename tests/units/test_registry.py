@@ -1,7 +1,8 @@
 """Tests for fermi_problems.units.registry.UnitRegistry"""
 
 import pytest
-from fermi_problems.units.registry import UnitRegistry, UnitDef, UnknownUnitError
+
+from fermi_problems.units.registry import UnitDef, UnitRegistry, UnknownUnitError
 
 
 def test_lookup_known_unit():

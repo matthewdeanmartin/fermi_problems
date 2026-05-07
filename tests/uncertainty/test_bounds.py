@@ -1,6 +1,7 @@
 """Tests for fermi_problems.uncertainty.bounds"""
 
 import pytest
+
 from fermi_problems.uncertainty.bounds import fermi_error_bounds
 
 

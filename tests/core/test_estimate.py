@@ -1,9 +1,11 @@
 """Tests for fermi_problems.core.estimate.Estimate"""
 
 import math
+
 import pytest
-from fermi_problems.units.dimension import Unit
+
 from fermi_problems.core.estimate import Estimate
+from fermi_problems.units.dimension import Unit
 
 
 def test_create_point_estimate():

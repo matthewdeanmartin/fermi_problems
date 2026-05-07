@@ -2,7 +2,7 @@
 
 from fermi_problems.core.chain import ChainResult
 from fermi_problems.core.estimate import Estimate
-from fermi_problems.formatting.notation import to_human, to_scientific, to_engineering
+from fermi_problems.formatting.notation import to_engineering, to_human, to_scientific
 
 
 def format_estimate(estimate: Estimate, style: str = "human") -> str:

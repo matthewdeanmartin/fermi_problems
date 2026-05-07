@@ -1,11 +1,6 @@
 """Tests for fermi_problems.formatting.notation"""
 
-from fermi_problems.formatting.notation import (
-    to_scientific,
-    to_engineering,
-    to_human,
-    to_order_of_magnitude,
-)
+from fermi_problems.formatting.notation import to_engineering, to_human, to_order_of_magnitude, to_scientific
 
 
 def test_to_scientific():

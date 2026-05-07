@@ -1,6 +1,7 @@
 """Tests for fermi_problems.units.parser.parse_unit"""
 
 import pytest
+
 from fermi_problems.units.dimension import Unit
 from fermi_problems.units.parser import parse_unit
 from fermi_problems.units.registry import UnknownUnitError

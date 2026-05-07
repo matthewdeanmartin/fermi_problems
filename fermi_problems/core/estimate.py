@@ -2,15 +2,15 @@
 
 import math
 
+from fermi_problems.core.sigfigs import infer_sig_figs
+from fermi_problems.uncertainty.lognormal import (
+    lognormal_confidence_interval,
+    lognormal_from_point_estimate,
+    lognormal_from_range,
+)
 from fermi_problems.units.dimension import Unit
 from fermi_problems.units.parser import parse_unit
 from fermi_problems.units.registry import UnitRegistry
-from fermi_problems.core.sigfigs import infer_sig_figs
-from fermi_problems.uncertainty.lognormal import (
-    lognormal_from_range,
-    lognormal_from_point_estimate,
-    lognormal_confidence_interval,
-)
 
 
 class Estimate:

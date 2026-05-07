@@ -72,15 +72,14 @@ def format_sig_figs(value: float, sig_figs: int) -> str:
         decimal_places = max(0, sig_figs - 1 - magnitude)
         if decimal_places == 0:
             return str(int(rounded))
-        else:
-            formatted = f"{rounded:.{decimal_places}f}"
-            return formatted
-    else:
-        # Scientific notation
-        exp = magnitude
-        coeff = value / (10**exp)
-        decimal_places = sig_figs - 1
-        coeff_rounded = round(coeff, decimal_places)
-        if decimal_places == 0:
-            return f"{coeff_rounded:.0f}e{exp:+03d}"
-        return f"{coeff_rounded:.{decimal_places}f}e{exp:+03d}"
+        formatted = f"{rounded:.{decimal_places}f}"
+        return formatted
+
+    # Scientific notation
+    exp = magnitude
+    coeff = value / (10**exp)
+    decimal_places = sig_figs - 1
+    coeff_rounded = round(coeff, decimal_places)
+    if decimal_places == 0:
+        return f"{coeff_rounded:.0f}e{exp:+03d}"
+    return f"{coeff_rounded:.{decimal_places}f}e{exp:+03d}"

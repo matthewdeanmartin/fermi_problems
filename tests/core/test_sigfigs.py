@@ -1,7 +1,8 @@
 """Tests for fermi_problems.core.sigfigs"""
 
 import pytest
-from fermi_problems.core.sigfigs import infer_sig_figs, round_to_sig_figs, format_sig_figs
+
+from fermi_problems.core.sigfigs import format_sig_figs, infer_sig_figs, round_to_sig_figs
 
 
 def test_infer_sig_figs_scientific_notation():

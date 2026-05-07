@@ -1,11 +1,12 @@
 """Tests for fermi_problems.core.magnitude — ported from tests/test_rounding.py + new tests."""
 
 import pytest
+
 from fermi_problems.core.magnitude import (
+    log10_distance,
     nearest_order_of_magnitude,
     order_of_magnitude,
     order_of_magnitude_range,
-    log10_distance,
 )
 
 

@@ -18,6 +18,23 @@ clean-pyc:
 
 # tests can't be expected to pass if dependencies aren't installed.
 # tests are often slow and linting is fast, so run tests on linted code.
+# LLM-friendly targets for token efficiency
+lint-llm:
+	@echo "Linting (concise)"
+	$(VENV) ruff check fermi_problems
+
+typecheck-llm:
+	@echo "Type checking (concise)"
+	$(VENV) mypy fermi_problems --ignore-missing-imports --check-untyped-defs
+
+test-llm:
+	@echo "Testing (concise)"
+	$(VENV) pytest tests -n auto --dist loadscope --tb=short -q
+
+check-llm: lint-llm typecheck-llm test-llm
+
+format: isort black
+
 test: uv.lock
 	@echo "Running unit tests"
 	# $(VENV) pytest --doctest-modules fermi_problems

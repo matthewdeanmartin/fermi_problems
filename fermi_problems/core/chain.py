@@ -2,10 +2,10 @@
 
 from dataclasses import dataclass
 
+from fermi_problems.core.estimate import Estimate
+from fermi_problems.uncertainty.interval import interval_product
 from fermi_problems.units.dimension import Unit
 from fermi_problems.units.parser import parse_unit
-from fermi_problems.uncertainty.interval import interval_product
-from fermi_problems.core.estimate import Estimate
 
 
 @dataclass
@@ -69,9 +69,7 @@ class EstimateChain:
         """Multiply all factors, propagate uncertainty, check units."""
         if not self._factors:
             # Empty chain: return a dimensionless 1
-            from fermi_problems.units.dimension import Unit as _Unit
-
-            dummy = Estimate(1.0, _Unit())
+            dummy = Estimate(1.0, Unit())
             return ChainResult(
                 estimate=dummy,
                 worst_case=(1.0, 1.0),
@@ -120,7 +118,7 @@ class EstimateChain:
         best_case = combined.confidence_interval(confidence)
 
         # Unit check
-        unit_ok, result_unit, mismatch_detail = self.validate_units()
+        unit_ok, _result_unit, mismatch_detail = self.validate_units()
 
         return ChainResult(
             estimate=combined,

@@ -58,19 +58,19 @@ def to_human(value: float, sig_figs: int = 2) -> str:
 
     if magnitude >= 12:
         return to_scientific(value, sig_figs)
-    elif magnitude >= 9:
+    if magnitude >= 9:
         coeff = value / 1e9
         decimal_places = max(0, sig_figs - len(str(int(abs(coeff)))))
         return f"{coeff:.{decimal_places}f}B"
-    elif magnitude >= 6:
+    if magnitude >= 6:
         coeff = value / 1e6
         decimal_places = max(0, sig_figs - len(str(int(abs(coeff)))))
         return f"{coeff:.{decimal_places}f}M"
-    elif magnitude >= 3:
+    if magnitude >= 3:
         coeff = value / 1e3
         decimal_places = max(0, sig_figs - len(str(int(abs(coeff)))))
         return f"{coeff:.{decimal_places}f}k"
-    elif magnitude >= -3:
+    if magnitude >= -3:
         # Plain number
         if magnitude >= 0:
             decimal_places = max(0, sig_figs - magnitude - 1)
@@ -82,11 +82,9 @@ def to_human(value: float, sig_figs: int = 2) -> str:
             except ValueError:
                 pass
             return ".".join(parts) if len(parts) > 1 else parts[0]
-        else:
-            decimal_places = sig_figs - magnitude - 1
-            return f"{value:.{decimal_places}f}"
-    else:
-        return to_scientific(value, sig_figs)
+        decimal_places = sig_figs - magnitude - 1
+        return f"{value:.{decimal_places}f}"
+    return to_scientific(value, sig_figs)
 
 
 def to_order_of_magnitude(value: float) -> str:

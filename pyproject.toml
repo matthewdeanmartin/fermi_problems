@@ -28,9 +28,18 @@ ais = 'fermi_problems.__main__:run'
 
 
 [dependency-groups]
-dev = ["mypy>=1.8.0", "ruff", "black>=23.11.0",
-    "pre-commit>=3.5.0", "interrogate>=1.5.0", "pdoc3>=0.10.0", "mdformat>=0.7.17",
-    "linkcheckmd>=1.4.0", "codespell>=2.2.6", "pyenchant>=3.2.2", "metametameta>=0.1.0",
+dev = [
+    "mypy>=1.8.0",
+    "ruff",
+    "black>=23.11.0",
+    "pre-commit>=3.5.0",
+    "interrogate>=1.5.0",
+    "pdoc3>=0.10.0",
+    "mdformat>=0.7.17",
+    "linkcheckmd>=1.4.0",
+    "codespell>=2.2.6",
+    "pyenchant>=3.2.2",
+    "metametameta>=0.1.0",
     "isort",
     "bandit",
     "pylint",
@@ -44,7 +53,9 @@ dev = ["mypy>=1.8.0", "ruff", "black>=23.11.0",
     "detect-test-pollution",
     "pytest-timeout>=2.4.0",
     "pytest-network",
-    "pytest-unused-fixtures"
+    "pytest-unused-fixtures",
+    "keepachangelog-manager>=4.0.0",
+    "hatch>=1.16.5",
 ]
 
 [tool.black]
@@ -98,19 +109,6 @@ use_parentheses = true
 [tool.ruff]
 line-length = 320
 
-# Enable Pyflakes `E` and `F` codes by default.
-select = ["E", "F",
-    "D", # docs
-    "UP", # pyupgrade
-    "B", # bugbear
-]
-ignore = [
-    "E722",
-    # only track structural problems with docstrings, not whitespace, nor missing
-    "D200", "D212", "D415", "D411", "D205", "D102", "D103", "D100", "D107", "D101", "D104", "D105",
-    "UP007", "UP038", # Not sure if | is well supported in lowever versions of python
-]
-
 # Exclude a variety of commonly ignored directories.
 exclude = [
     "dead_code",
@@ -134,14 +132,27 @@ exclude = [
     "node_modules",
     "venv",
 ]
-per-file-ignores = { }
-
-# Allow unused variables when underscore-prefixed.
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 # Assume Python 3.10.
 target-version = "py311"
 
+[tool.ruff.lint]
+# Enable Pyflakes `E` and `F` codes by default.
+select = ["E", "F",
+    "D", # docs
+    "UP", # pyupgrade
+    "B", # bugbear
+]
+ignore = [
+    "E722",
+    # only track structural problems with docstrings, not whitespace, nor missing
+    "D200", "D212", "D415", "D411", "D205", "D102", "D103", "D100", "D107", "D101", "D104", "D105",
+    "UP007", # Not sure if | is well supported in lowever versions of python
+]
+per-file-ignores = { }
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

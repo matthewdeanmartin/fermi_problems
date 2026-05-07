@@ -73,8 +73,7 @@ class Quantity:
         converted_value = self.in_unit(target)
         if isinstance(target, str):
             return Quantity(converted_value, target)
-        else:
-            return Quantity(converted_value / 1.0, target)
+        return Quantity(converted_value / 1.0, target)
 
     def __mul__(self, other: "Quantity | float | int") -> "Quantity":
         if isinstance(other, (int, float)):

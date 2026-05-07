@@ -82,8 +82,7 @@ class Unit:
 
         if num_str and den_str:
             return f"{num_str}/{den_str}"
-        elif num_str:
+        if num_str:
             return num_str
-        else:
-            # All negative exponents — show as 1/denom
-            return f"1/{den_str}"
+        # All negative exponents — show as 1/denom
+        return f"1/{den_str}"
