@@ -177,4 +177,6 @@ app_author = "matthewdeanmartin"
 source_folder = "fermi_problems"
 #ctags_file = "fish_tank.tags"
 [tool.uv]
+
+[tool.uv.pip]
 universal = true
