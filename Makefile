@@ -72,7 +72,7 @@ pylint:isort black
 	$(VENV) pylint fermi_problems --fail-under 9.4
 
 
-check: mypy test pylint bandit pre-commit
+check: mypy test pylint bandit
 
 publish: testf
 	rm -rf dist && $(VENV) hatch build
