@@ -54,7 +54,7 @@ dev = [
     "pytest-timeout>=2.4.0",
     "pytest-network",
     "pytest-unused-fixtures",
-    "keepachangelog-manager>=4.0.0",
+    "keepachangelog-manager-fork[all]>=6.5.0",
     "hatch>=1.16.5",
 ]
 
