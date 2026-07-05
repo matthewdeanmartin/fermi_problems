@@ -39,7 +39,7 @@ dev = [
     "linkcheckmd>=1.4.0",
     "codespell>=2.2.6",
     "pyenchant>=3.2.2",
-    "metametameta>=0.1.0",
+    "metametameta>=0.1.14",
     "isort",
     "bandit",
     "pylint",
