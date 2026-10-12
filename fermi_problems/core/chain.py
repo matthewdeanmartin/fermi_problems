@@ -150,7 +150,7 @@ class EstimateChain:
         if result_unit == self._target_unit:
             return True, result_unit, None
 
-        msg = f"Expected unit '{self._target_unit_str}' ({self._target_unit}), " f"got {result_unit}"
+        msg = f"Expected unit '{self._target_unit_str}' ({self._target_unit}), got {result_unit}"
         return False, result_unit, msg
 
     def __repr__(self) -> str:

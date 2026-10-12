@@ -112,7 +112,6 @@ class DeferredExpression:
 
 
 if __name__ == "__main__":
-
     # Usage
     expr = DeferredExpression()
     expr.add_operand(SigFig(1.234, 3))
